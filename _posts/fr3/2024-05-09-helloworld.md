@@ -6,7 +6,7 @@ header:
   #overlay_image: /assets/images/main/header3.jpg
   overlay_filter: 0.5
 ribbon: Firebrick
-excerpt: "My first blog post"
+excerpt: "Excited to have you along as I dive into the wild world of cybersecurity. This blog is my personal space to share all the ups, downs, and aha moments of my journey—from tackling Capture The Flag challenges to experimenting with new security projects."
 description: "My first blog post"
 categories:
   - fr3
