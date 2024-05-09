@@ -4,7 +4,7 @@ classes: wide
 header:  
   teaser: /assets/images/posts/fr3/helloworld.jpg
   #overlay_image: /assets/images/main/header3.jpg
-  #overlay_filter: 0.5
+  overlay_filter: 0.5
 ribbon: Firebrick
 excerpt: "My first blog post"
 description: "My first blog post"
