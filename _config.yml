@@ -16,10 +16,10 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "%00"
+title                    : ""
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Razvan Serban"
+name                     : "Razvan"
 description              : "Cybersecurity campfire"
 url                      : "https://rizi85.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -128,7 +128,7 @@ author:
     #  icon: "fab fa-fw fa-instagram"
     #  url: "https://www.instagram.com/"
     - label: "TryHackMe"
-      icon: "fab fa-fw fas fa-user-secret"
+      icon: "fab fa-fw fa-user-secret"
       url: "https://tryhackme.com/p/rizi85"
 
 # Site Footer
