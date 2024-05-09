@@ -124,12 +124,13 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/razvanserban/"
+    - label: "TryHackMe"
+      icon: "fas fa-fw fa-user-secre"
+      url: "https://tryhackme.com/p/rizi85"
+
     #- label: "Instagram"
     #  icon: "fab fa-fw fa-instagram"
     #  url: "https://www.instagram.com/"
-    - label: "TryHackMe"
-      icon: "fab fa-fw fa-user-secret"
-      url: "https://tryhackme.com/p/rizi85"
 
 # Site Footer
 footer:
