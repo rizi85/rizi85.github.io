@@ -9,7 +9,12 @@ header:
   #overlay_filter: 0.5
 ---
 
-# whoami
+## whoami
+TBD
 
+### certifications
+TBD
+
+### TryHackMe status
 <script src="https://tryhackme.com/badge/1326781"></script>
 
