@@ -5,8 +5,8 @@ search: false
 
 @charset "utf-8";
 
-$link-color: rgb(0, 95, 0);
-$masthead-link-color: green;
+$link-color: green;
+$masthead-link-color: rgb(0, 95, 0);
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
