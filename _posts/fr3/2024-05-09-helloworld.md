@@ -2,7 +2,7 @@
 title: "Hello World!"
 classes: wide
 header:  
-  teaser: /assets/images/posts/fr3/helloworld.webp
+  teaser: /assets/images/posts/fr3/helloworld.jpg
   #overlay_image: /assets/images/main/header3.jpg
   #overlay_filter: 0.5
 ribbon: Firebrick
@@ -15,7 +15,7 @@ tags:
 toc: false
 ---
 
-<img src="/assets/images/posts/fr3/helloworld.webp" alt="Red vs Blue Teams" width="500" class="align-center">
+<img src="/assets/images/posts/fr3/helloworld.jpg" alt="Red vs Blue Teams" width="500" class="align-center">
 
 **Hi there!** Excited to have you along as I dive into the wild world of cybersecurity. This blog is my personal space to share all the ups, downs, and aha moments of my journey—from tackling Capture The Flag challenges to experimenting with new security projects.
 
