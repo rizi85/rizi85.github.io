@@ -23,7 +23,7 @@ Always eager to expand my knowledge, I'm currently diving deep into the fascinat
 
 ## 🏆 certifications
 ---
-<img src="/assets/images/certs/ejpt.png" alt="eJPT" width="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" width="100">
+<img src="/assets/images/certs/ISTQB.png" alt="ISTQB" width="100"><img src="/assets/images/certs/ejpt.png" alt="eJPT" width="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" width="100">
 
 ## 🧙‍♂️ community
 ---
