@@ -131,6 +131,9 @@ author:
     - label: TryHackMe
       icon: fas fa-fw fa-user-secret
       url: https://tryhackme.com/p/rizi85
+    - label: Twitter
+      icon: fab fa-fw fa-twitter-square
+      url: https://twitter.com/TheRealRizi85
     - label: LinkedIn
       icon: fab fa-fw fa-linkedin
       url: https://www.linkedin.com/in/razvanserban/
