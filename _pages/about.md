@@ -9,7 +9,7 @@ header:
   #overlay_filter: 0.5
 tags:
   - AppSec
-  - Ret Team
+  - Red Team
   - Penetration Testing
   - Pentest
   - AI
@@ -23,6 +23,4 @@ Always eager to expand my knowledge, I'm currently diving deep into the fascinat
 
 ## 🏆 certifications
 ---
-<img src="/assets/images/certs/ejpt.png" alt="eJPT" width="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" width="100">
-
-**Tags:** #AppSec #RetTeam #Pentest #AI #Cloud
+<img src="/assets/images/certs/ejpt.png" alt="eJPT" height="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" height="100">
