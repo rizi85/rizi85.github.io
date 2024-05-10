@@ -23,4 +23,8 @@ Always eager to expand my knowledge, I'm currently diving deep into the fascinat
 
 ## 🏆 certifications
 ---
-<img src="/assets/images/certs/ejpt.png" alt="eJPT" height="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" height="100">
+<img src="/assets/images/certs/ejpt.png" alt="eJPT" width="100"><img src="/assets/images/certs/ewpt.png" alt="eWPT" width="100">
+
+## 🧙‍♂️ community
+---
+Sharing is caring, especially when it comes to hacking knowledge. That's why I started a [Discord server](https://discord.gg/zWYP2GPp) – it's like a digital fight club, but for ethical hackers. We learn, we share, and maybe some egos get bruised along the way. Thrill-seekers and keyboard warriors welcome!
