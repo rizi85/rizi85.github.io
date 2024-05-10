@@ -19,10 +19,9 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    <img src="{{ teaser | relative_url }}" alt="" width="100" height="100" style="vertical-align:middle">
+    <img src="/assets/images/posts/fr3/helloworld.jpg" alt="100x100" width="100" height="100" align="left" style="margin: 0px 10px 0px 0px;">
     <span>
       {% include page__meta.html type=include.type %}
-      <p class="archive__item-excerpt" itemprop="description">Category: {{ post.categories }}</p>
       {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
     </span>  
   </article>
