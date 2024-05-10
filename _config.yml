@@ -67,7 +67,7 @@ reCaptcha:
   siteKey: null
   secret: null
 atom_feed:
-  path: blank # blank (default) uses feed.xml
+  path: null # blank (default) uses feed.xml
   hide: true # true, false (default)
 search: true # true, false (default)
 search_full_content: true # true, false (default)
@@ -135,7 +135,7 @@ author:
       icon: fab fa-fw fa-twitter-square
       url: https://twitter.com/TheRealRizi85
     - label: LinkedIn
-      icon: fab fa-fw fa-linkedin
+      icon: fa-brands fa-fw fa-twitter
       url: https://www.linkedin.com/in/razvanserban/
     #- label: "Instagram"
     #  icon: "fab fa-fw fa-instagram"
