@@ -15,6 +15,5 @@ TBD
 ### certifications
 TBD
 
-### TryHackMe status
-<script src="https://tryhackme.com/badge/1326781"></script>
+
 
