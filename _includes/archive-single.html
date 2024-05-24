@@ -19,7 +19,7 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    <img src="{{ post.teaser | relative_url }}" alt="100x100" width="100" height="100" align="left" style="margin: 0px 10px 0px 0px;">
+    <img src="{{ post.header.teaser | relative_url }}" alt="100x100" width="100" height="100" align="left" style="margin: 0px 10px 0px 0px;">
     <span>
       {% include page__meta.html type=include.type %}
       {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
