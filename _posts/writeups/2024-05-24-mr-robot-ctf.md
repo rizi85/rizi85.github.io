@@ -23,6 +23,8 @@ toc: false
 
 <img src="/assets/images/posts/writeups/mr_robot.jpg" alt="Mr Robot" width="500" class="align-center">
 
+TryHackMe Mr Robot CTF is inspired by the popular TV series, this machine offers a thrilling challenge that will test your skills in web exploitation, privilege escalation, and more. I'll take you step-by-step through the process of hacking into the Mr Robot machine, uncovering hidden vulnerabilities, and ultimately capturing the flags.
+
 ## Information gathering
 
 ### Enumeration
