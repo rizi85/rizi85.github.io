@@ -54,7 +54,7 @@ comments:
     category_id: null # Shown during giscus setup at https://giscus.app
     discussion_term: null # "pathname" (default), "url", "title", "og:title"
     reactions_enabled: null # '1' for enabled (default), '0' for disabled
-    theme: null # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
+    theme: "dark" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
     strict: null # 1 for enabled, 0 for disabled (default)
     input_position: null # "top", "bottom" # The comment input box will be placed above or below the comments
     emit_metadata: null # 1 for enabled, 0 for disabled (default) # https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#imetadatamessage
