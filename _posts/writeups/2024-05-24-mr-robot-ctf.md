@@ -1,5 +1,5 @@
 ---
-title: "Writeup for Mr Robot CTF on THM"
+title: "Mr Robot machine on THM"
 classes: wide
 header:  
   teaser: /assets/images/posts/writeups/mr_robot.jpg
@@ -15,8 +15,9 @@ tags:
   - THM
   - CTF
   - privesc
-  - witeup
+  - writeup
   - TryHackMe
+  - Easy
 toc: false
 ---
 # Mr Robot CTF
