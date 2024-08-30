@@ -16,7 +16,7 @@ minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon
 
 # Site Settings
 locale: en-US
-title: "•[rizi85]•" # site title, e.g. "Jekyll • Markdown • HTML"
+title: "" # site title, e.g. "Jekyll • Markdown • HTML"
 title_separator: "|"
 subtitle: null # site tagline that appears below site title in masthead
 name: Razvan
