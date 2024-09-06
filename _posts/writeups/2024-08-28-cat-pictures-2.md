@@ -20,7 +20,6 @@ tags:
   - Easy
 toc: false
 ---
-# Cat Pictures 2
 
 <img src="/assets/images/posts/writeups/cat_pictures_2.jpg" alt="Cat Pictures 2" width="500" class="align-center">
 

@@ -22,7 +22,6 @@ tags:
   - Easy
 toc: false
 ---
-# Devvortex CTF
 
 <img src="/assets/images/posts/writeups/devvortex.jpg" alt="Devvortex" width="500" class="align-center">
 

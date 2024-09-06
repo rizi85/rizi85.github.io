@@ -21,7 +21,6 @@ tags:
   - Easy
 toc: false
 ---
-# Simple CTF
 
 <img src="/assets/images/posts/writeups/simple_ctf.jpg" alt="Simple_Ctf" width="500" class="align-center">
 

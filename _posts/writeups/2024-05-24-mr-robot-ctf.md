@@ -20,7 +20,6 @@ tags:
   - Easy
 toc: false
 ---
-# Mr Robot CTF
 
 <img src="/assets/images/posts/writeups/mr_robot.jpg" alt="Mr Robot" width="500" class="align-center">
 
