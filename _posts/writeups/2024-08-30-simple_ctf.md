@@ -7,7 +7,7 @@ header:
   overlay_filter: 0.5
 ribbon: Firebrick
 excerpt: "A beginner level CTF with a twist. The configuration leave room for errors, keep an eye on the CMS used."
-description: "Walkthrough on Blog machine from TryHackMe"
+description: "Walkthrough on Simple CTF machine from TryHackMe"
 categories:
   - writeups
 tags:
@@ -21,9 +21,9 @@ tags:
   - Easy
 toc: false
 ---
-# Skynet CTF
+# Simple CTF
 
-<img src="/assets/images/posts/writeups/simple_ctf.jpg" alt="Blog" width="500" class="align-center">
+<img src="/assets/images/posts/writeups/simple_ctf.jpg" alt="Simple_Ctf" width="500" class="align-center">
 
 A beginner level CTF with a twist. The configuration leave room for errors, keep an eye on the CMS used.
 

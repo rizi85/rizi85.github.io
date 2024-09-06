@@ -22,7 +22,7 @@ tags:
   - Easy
 toc: false
 ---
-# Ignite CTF
+# Devvortex CTF
 
 <img src="/assets/images/posts/writeups/devvortex.jpg" alt="Devvortex" width="500" class="align-center">
 
