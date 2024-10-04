@@ -7,7 +7,7 @@ header:
   overlay_filter: 0.5
 ribbon: Firebrick
 excerpt: "Cheese CTF is a (not so) easy challenge with different extra flavours. Starting with SQLi and continuing with PHP filters for LFI, to chaining PHP filters for RCE, you'll encounter everything in between and more."
-description: "Walkthrough on Hammer machine from TryHackMe"
+description: "Walkthrough on Cheese CTF machine from TryHackMe"
 categories:
   - writeups
 tags:
