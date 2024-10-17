@@ -41,7 +41,7 @@ The AI will output a list that includes standard options (`mail.abcxyz.com`, `de
 
 ### 2. Automating OSINT and Data Correlation
 
-AI is particularly effective at combing through massive datasets to extract useful information. By automating OSINT (Open Source Intelligence) collection, you can gather public information on `abcxyz.com` from a wide variety of sources—such as DNS records, public code repositories, historical data from `Wayback Machine`, and even seemingly mundane mentions on social media.
+AI is particularly effective at combing through massive datasets to extract useful information. By automating OSINT (Open Source Intelligence) collection, you can gather public information on `abcxyz.com` from a wide variety of sources such as DNS records, public code repositories, historical data from `Wayback Machine`, and even seemingly mundane mentions on social media.
 
 For instance, you could use an AI-powered script that scrapes data from sources like `VirusTotal`, `CRT.sh` (which provides historical SSL certificate data), or GitHub, and then cross-references those with information from tools like `SecurityTrails` or `Shodan`. AI can then parse through these large datasets to identify patterns or mentions of subdomains, even in contexts where they might not be explicitly listed.
 
@@ -67,7 +67,7 @@ The AI will parse through the often lengthy Amass output and provide you with a 
 
 ### 4. Clustering Results to Identify Patterns
 
-Subdomains are often named following particular conventions. AI can help analyze and cluster enumerated subdomains to detect patterns that can guide further exploration. Let’s say you’ve found `staging1.abcxyz.com` and `staging2.abcxyz.com`—the AI can suggest other potential naming conventions (`staging3`, `staging4`, etc.) based on the pattern it recognizes. This can be incredibly helpful for generating even more leads for subdomains to test.
+Subdomains are often named following particular conventions. AI can help analyze and cluster enumerated subdomains to detect patterns that can guide further exploration. Let’s say you’ve found `staging1.abcxyz.com` and `staging2.abcxyz.com` the AI can suggest other potential naming conventions (`staging3`, `staging4`, etc.) based on the pattern it recognizes. This can be incredibly helpful for generating even more leads for subdomains to test.
 
 **Real-Life Example: AI in Action**
 
@@ -77,8 +77,8 @@ This makes your workflow much smoother: you spend less time sifting through pote
 
 **Wrapping It Up**
 
-Using AI for subdomain enumeration isn’t just a fancy trick—it’s a practical way to supercharge your pentesting engagements. By automating data collection, enhancing existing tools, and even creatively guessing new subdomains, AI can significantly improve the scope and efficiency of your reconnaissance phase.
+Using AI for subdomain enumeration isn’t just a fancy trick it’s a practical way to supercharge your pentesting engagements. By automating data collection, enhancing existing tools, and even creatively guessing new subdomains, AI can significantly improve the scope and efficiency of your reconnaissance phase.
 
-Remember, enumeration is just the beginning—it's the groundwork for everything else to come. With AI as your partner in crime, you’ll find yourself better prepared and more confident as you move through the later stages of your penetration testing engagements.
+Remember, enumeration is just the beginning it's the groundwork for everything else to come. With AI as your partner in crime, you’ll find yourself better prepared and more confident as you move through the later stages of your penetration testing engagements.
 
-Stay tuned for the next episode of "Partners in Crime," where we'll explore more ways that AI can boost your offensive security skills. In the meantime, get out there, give AI a try in your next pentest, and let us know how it goes—because even the best hackers could use a good partner in crime!
+Stay tuned for the next episode of "Partners in Crime," where we'll explore more ways that AI can boost your offensive security skills. In the meantime, get out there, give AI a try in your next pentest, and let me know how it goes because even the best hackers could use a good partner in crime!
