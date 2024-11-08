@@ -262,7 +262,7 @@ User tomcat may run the following commands on Backtrack:
 5. I checked the the `/opt/test_playbooks/` directory and I saw is owned by `wilbur` user and `tomcat` has no access to write in it
 6. Trying to privesc I lost a lot of time to move the `linpeas.sh` script and hunt for "ghosts" (truth being told I did this machine on the Halloween day)
 7. Trying to lateral move from `tomcat` to `wilbur` I return to my initial finding, the `ansible` scrip, and start building a plan
-8. First I'll need to create my `shell.yml` script to start a reverse shell and start a listener locally (read more about ansible script exploit here https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/ansible-playbook-privilege-escalation/)
+8. First I'll need to create my `shell.yml` script to start a reverse shell and start a listener locally (read more about ansible script exploit [here](https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/ansible-playbook-privilege-escalation/))
 
 ```sh
 - hosts: localhost
@@ -428,7 +428,7 @@ select * from user;
 5. Using listed commands I was able to discover a user `root` with a `mysql_native_password` like `*856799D829FB98D3A55E56F888675465A2C973E4`
 6. After a lot of time spent on this rabbit hole I decided to check other options as cracking the password for root and trying to change password with limited privileges `orville` user had on `mysql` DB, was impossible
 7. The next rabbit hole I spent time was related to archive previously discovered `/home/orville/web_snapshot.zip`; this file is created every minute by some script/cron/app and I lost a lot of time trying to exploit that
-8. Finally seems everting boils down to some old vulnerability described here https://www.errno.fr/TTYPushback.html called TTY Pushback (with a CTFish twist)
+8. Finally seems everting boils down to some old vulnerability described [here](https://www.errno.fr/TTYPushback.html) called TTY Pushback (with a CTFish twist)
 9. Basically while running the `su` command, the `root` user does not use the `-P` flag, meaning no new `PTY` is allocated 
 10. User `orville` can abuse it by sending a `SIGSTOP` signal to it, allowing focus to shift to the `root` shell
 11. On the link above you can find the POC as a Python script you can use to crate a file called `ttyPush.py` in `orville` home directory
