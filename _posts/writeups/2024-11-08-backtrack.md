@@ -209,7 +209,7 @@ curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../
 </tomcat-users>
 ```
 9. Since I'm not proficient with Tomcat config, first I tried to login from browser with the discovered user and password on `http://10.10.1.70:8080` but I run into an error like 'By default the Host Manager is only accessible from a browser running on the same machine as Tomcat...'
-10. Digging deeper I found there are different roles in Tomcat and the one assigned to user I found is `manager-script`. This role can't access `/host-manager/html` from GUI, only via text-web-service (more on the topic here: (https://www.baeldung.com/tomcat-manager-app)
+10. Digging deeper I found there are different roles in Tomcat and the one assigned to user I found is `manager-script`. This role can't access `/host-manager/html` from GUI, only via text-web-service (more on the topic [here](https://www.baeldung.com/tomcat-manager-app))
 11. For the beginning let's list all deployed apps:
 
 ```sh
