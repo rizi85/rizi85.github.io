@@ -26,7 +26,7 @@ toc: false
 
 <img src="/assets/images/posts/writeups/backtrack.jpg" alt="Backtrack" width="500" class="align-center">
 
-Backtrack CTF offers an exciting medium-level challenge designed to keep you on your toes with a variety of obstacles. From the very start, you’ll dive into a path traversal exploit based on a known CVE, which sets the stage for a thrilling journey through a maze of vulnerabilities. As you navigate through each layer, you’ll encounter both connected and unexpected vulnerabilities, leading to many twists and turns. With plenty of rabbit holes to explore, Backtrack CTF is a true test of persistence and skill—perfect for anyone ready to hone their abilities and enjoy the thrill of the hunt!
+Backtrack CTF offers an exciting medium-level challenge designed to keep you on your toes with a variety of obstacles. From the very start, you’ll dive into a path traversal exploit based on a known CVE, which sets the stage for a thrilling journey through a maze of vulnerabilities. As you navigate through each layer, you’ll encounter both connected and unexpected vulnerabilities, leading to many twists and turns. With plenty of rabbit holes to explore, Backtrack CTF is a true test of persistence and skill—perfect for anyone ready to hone their abilities and enjoy the thrill of the hunt!!
 
 ## Information gathering
 
