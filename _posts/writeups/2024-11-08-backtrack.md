@@ -26,7 +26,7 @@ toc: false
 
 <img src="/assets/images/posts/writeups/backtrack.jpg" alt="Backtrack" width="500" class="align-center">
 
-Backtrack CTF offers an exciting medium-level challenge designed to keep you on your toes with a variety of obstacles. From the very start, you’ll dive into a path traversal exploit based on a known CVE, which sets the stage for a thrilling journey through a maze of vulnerabilities. As you navigate through each layer, you’ll encounter both connected and unexpected vulnerabilities, leading to many twists and turns. With plenty of rabbit holes to explore, Backtrack CTF is a true test of persistence and skill—perfect for anyone ready to hone their abilities and enjoy the thrill of the hunt!!
+Backtrack CTF offers an exciting medium-level challenge designed to keep you on your toes with a variety of obstacles. From the very start, you’ll dive into a path traversal exploit based on a known CVE, which sets the stage for a thrilling journey through a maze of vulnerabilities. As you navigate through each layer, you’ll encounter both connected and unexpected vulnerabilities, leading to many twists and turns. With plenty of rabbit holes to explore, Backtrack CTF is a true test of persistence and skill—perfect for anyone ready to hone their abilities and enjoy the thrill of the hunt!
 
 ## Information gathering
 
@@ -209,7 +209,7 @@ curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../
 </tomcat-users>
 ```
 9. Since I'm not proficient with Tomcat config, first I tried to login from browser with the discovered user and password on `http://10.10.1.70:8080` but I run into an error like 'By default the Host Manager is only accessible from a browser running on the same machine as Tomcat...'
-10. Digging deeper I found there are different roles in Tomcat and the one assigned to user I found is `manager-script`. This role can't access `/host-manager/html` from GUI, only via text-web-service (more on the topic here: https://www.baeldung.com/tomcat-manager-app)
+10. Digging deeper I found there are different roles in Tomcat and the one assigned to user I found is `manager-script`. This role can't access `/host-manager/html` from GUI, only via text-web-service (more on the topic here: (https://www.baeldung.com/tomcat-manager-app)
 11. For the beginning let's list all deployed apps:
 
 ```sh
