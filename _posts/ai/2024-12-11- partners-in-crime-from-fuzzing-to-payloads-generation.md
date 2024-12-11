@@ -155,7 +155,7 @@ For example, if you know the database version (e.g., MySQL 8.x or MSSQL 2019), y
 The same principle applies to crafting XSS payloads. Instead of using generic payloads, you can ask AI to generate JavaScript code specifically tailored to the type of XSS vulnerability you suspect—be it reflected, stored, or DOM-based. You might even specify the context, such as script tags, attributes, or inline event handlers, and the AI will provide payloads designed to work in those exact situations.
 
 Moreover, AI enables rapid generation of test scenarios for more sophisticated attack chains. For instance:
-	•	If testing a financial application, AI can help simulate business logic abuse by generating scenarios for manipulating transaction parameters.
-	•	If exploring API vulnerabilities, AI can quickly draft crafted JSON payloads or specific HTTP requests based on the API documentation or observed behaviors.
+- If testing a financial application, AI can help simulate business logic abuse by generating scenarios for manipulating transaction parameters.
+- If exploring API vulnerabilities, AI can quickly draft crafted JSON payloads or specific HTTP requests based on the API documentation or observed behaviors.
 
 This ability to adapt and generate highly specific output not only saves time but also allows testers to focus their energy on high-value tasks, such as analyzing results, understanding application logic, and planning strategic attacks. While AI won’t replace the creative thinking and intuition of a skilled penetration tester, it acts as a powerful ally, automating repetitive tasks and equipping you with tailored tools to uncover vulnerabilities efficiently.
