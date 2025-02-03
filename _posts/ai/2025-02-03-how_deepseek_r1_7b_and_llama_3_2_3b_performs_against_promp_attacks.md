@@ -87,5 +87,4 @@ DeepSeek R1 7B is a highly capable model, even though it has been distilled from
 
 That said, I tested similar prompts on the commercial (and more capable) model available at https://chat.deepseek.com, and most of them were blocked, demonstrating significant security improvements.
 
-[!Attention:]
 >It is important to note that this assessment is not a comprehensive penetration test but rather a simple security evaluation focusing on key areas. It was conducted with limited resources and within a short time frame as a personal exercise.
