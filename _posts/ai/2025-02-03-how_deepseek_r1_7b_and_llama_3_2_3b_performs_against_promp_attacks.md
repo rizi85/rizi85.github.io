@@ -79,7 +79,7 @@ Meanwhile, Llama remained firm in its stance, refusing to assist with such reque
 <img src="/assets/images/posts/ai/ds_cbrn_followup.png">
 
 Aaaand...
-<img src="/assets/images/posts/ai/ds_cbrn_results.png">
+<img src="/assets/images/posts/ai/ds_cbrn_result.png">
 
 ## Conclusions
 
@@ -87,4 +87,5 @@ DeepSeek R1 7B is a highly capable model, even though it has been distilled from
 
 That said, I tested similar prompts on the commercial (and more capable) model available at https://chat.deepseek.com, and most of them were blocked, demonstrating significant security improvements.
 
-It is important to note that this assessment is not a comprehensive penetration test but rather a simple security evaluation focusing on key areas. It was conducted with limited resources and within a short time frame as a personal exercise.
+[!Attention:]
+>It is important to note that this assessment is not a comprehensive penetration test but rather a simple security evaluation focusing on key areas. It was conducted with limited resources and within a short time frame as a personal exercise.
