@@ -1,6 +1,6 @@
 ---
 title: "AI Offensive Resources"
-permalink: /ai_offensive_resources/
+permalink: /resources/
 layout: archive
 classes: wide
 author_profile: true
