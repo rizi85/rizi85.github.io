@@ -1,7 +1,7 @@
 ---
 title: "AI Offensive Resources"
 permalink: /ai_offensive_resources/
-layout: default
+layout: archive
 classes: wide
 author_profile: true
 header:  
