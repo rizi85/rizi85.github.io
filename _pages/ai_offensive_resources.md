@@ -17,8 +17,6 @@ tags:
   - Gandalf
   - HTB
 ---
-# 🧠 AI Offensive Resources
-
 A curated collection of **resources, tools, and methodologies** for those interested in **AI Red Teaming, LLM security, and offensive testing**.  
 Whether you're just starting out or leveling up your skills, these links will help you navigate the growing world of **offensive AI security**.
 
