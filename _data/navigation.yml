@@ -2,6 +2,8 @@
 main:
    - title: "Posts"
      url: /
+   - title: "AI Offensive Resources"
+     url: /ai_offensive_resources
    - title: "About"
      url: /about
   # - title: "Sample Posts"
