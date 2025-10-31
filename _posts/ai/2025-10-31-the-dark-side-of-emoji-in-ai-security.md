@@ -134,17 +134,10 @@ Given the realities outlined, what can organisations and developers do? While fu
 At first glance, emojis seem harmless: a smiley face, a thumbs-up, a funny icon. Yet as the talk at Connect.IT made clear, in the world of AI security these pictograms can become weapons. The flexibility of Unicode, once a strength enabling global communication, now presents an unexpected attack surface. For cybersecurity professionals, AI developers and policy-makers alike, the “dark side of emoji” is a reminder: threats evolve, sometimes in the smallest details of how we encode text. Guardrails alone won’t suffice unless they’re built with a deep understanding of encoding, tokenisation and the surprising ways attackers can exploit them. If you’re building or deploying LLM-based systems, it’s time to ask: what’s hiding behind that smiley face?
 
 ## Referenced Sources
-Wikipedia – Unicode Variation Selectors
-https://en.wikipedia.org/wiki/Variation_Selectors_%28Unicode_block%29
-Cybersecurity News – Hackers Can Bypass Microsoft, NVIDIA, Meta AI Filters
-https://cybersecuritynews.com/hackers-can-bypass-microsoft-nvidia-meta-ai-filters/
-Paul Butler – Smuggling Arbitrary Data Through an Emoji (2025)
-https://paulbutler.org/2025/smuggling-arbitrary-data-through-an-emoji/
-Prompt Security – Unicode Exploits Are Compromising Application Security
-https://www.prompt.security/blog/unicode-exploits-are-compromising-application-security
-Mindgard – Outsmarting AI Guardrails with Invisible Characters and Adversarial Prompts
-https://mindgard.ai/blog/outsmarting-ai-guardrails-with-invisible-characters-and-adversarial-prompts
-arXiv – Emoji Attack: A Method for Misleading Judge LLMs in Safety Risk Detection
-https://arxiv.org/abs/2411.01077
-AWS Security Blog – Defending LLM Applications Against Unicode Character Smuggling
-https://aws.amazon.com/blogs/security/defending-llm-applications-against-unicode-character-smuggling/
+- Wikipedia – Unicode Variation Selectors [https://en.wikipedia.org/wiki/Variation_Selectors_%28Unicode_block%29]
+- Cybersecurity News – Hackers Can Bypass Microsoft, NVIDIA, Meta AI Filters[https://cybersecuritynews.com/hackers-can-bypass-microsoft-nvidia-meta-ai-filters/]
+- Paul Butler – Smuggling Arbitrary Data Through an Emoji (2025)[https://paulbutler.org/2025/smuggling-arbitrary-data-through-an-emoji/]
+- Prompt Security – Unicode Exploits Are Compromising Application Security[https://www.prompt.security/blog/unicode-exploits-are-compromising-application-security]
+- Mindgard – Outsmarting AI Guardrails with Invisible Characters and Adversarial Prompts[https://mindgard.ai/blog/outsmarting-ai-guardrails-with-invisible-characters-and-adversarial-prompts]
+- arXiv – Emoji Attack: A Method for Misleading Judge LLMs in Safety Risk Detection[https://arxiv.org/abs/2411.01077]
+- AWS Security Blog – Defending LLM Applications Against Unicode Character Smuggling[https://aws.amazon.com/blogs/security/defending-llm-applications-against-unicode-character-smuggling/]
